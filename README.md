@@ -17,11 +17,7 @@ ASCII Cam is a browser-based application that captures your device's camera feed
 
 ## Demo
 
-[Live Demo](https://your-username.github.io/ascii-cam) *(Add your deployed URL here)*
-
-## Screenshots
-
-![ASCII Cam Screenshot](screenshot.png) *(Add a screenshot after deployment)*
+[Live Demo](https://ascii-cam-time.netlify.app)
 
 ## Requirements
 
@@ -40,6 +36,7 @@ Simply open `index.html` in a web browser. Note that some browsers may restrict 
 For the best experience, run a local server:
 
 **Using Python:**
+
 ```bash
 # Python 3
 python -m http.server 8000
@@ -49,11 +46,13 @@ python -m SimpleHTTPServer 8000
 ```
 
 **Using Node.js:**
+
 ```bash
 npx http-server -p 8000
 ```
 
 **Using PHP:**
+
 ```bash
 php -S localhost:8000
 ```
@@ -87,7 +86,7 @@ Then open `http://localhost:8000` in your browser.
 ## Browser Compatibility
 
 | Browser | Desktop | Mobile |
-|---------|---------|--------|
+| ------- | ------- | ------ |
 | Chrome  | ✅      | ✅     |
 | Firefox | ✅      | ✅     |
 | Safari  | ✅      | ✅     |
@@ -118,9 +117,9 @@ ascii-cam/
 Edit the character set in `main.js`:
 
 ```javascript
-this.effect = new AsciiEffect(this.renderer, ' .:-+*=%@#', {
-    invert: false,
-    resolution: 0.15
+this.effect = new AsciiEffect(this.renderer, " .:-+*=%@#", {
+  invert: false,
+  resolution: 0.15,
 });
 ```
 
@@ -131,7 +130,14 @@ The characters should be ordered from darkest to brightest.
 Modify the default resolution in `index.html`:
 
 ```html
-<input type="range" id="resolution" min="0.05" max="0.3" step="0.01" value="0.15">
+<input
+  type="range"
+  id="resolution"
+  min="0.05"
+  max="0.3"
+  step="0.01"
+  value="0.15"
+/>
 ```
 
 ### Change Color Scheme
@@ -139,8 +145,8 @@ Modify the default resolution in `index.html`:
 Edit the colors in `styles.css` or modify the effect styling in `main.js`:
 
 ```javascript
-this.effect.domElement.style.color = 'white';
-this.effect.domElement.style.backgroundColor = 'black';
+this.effect.domElement.style.color = "white";
+this.effect.domElement.style.backgroundColor = "black";
 ```
 
 ## Performance Optimization
@@ -159,14 +165,17 @@ this.effect.domElement.style.backgroundColor = 'black';
 ## Troubleshooting
 
 **Camera permission denied:**
+
 - Check browser settings to ensure camera access is allowed
 - Try refreshing the page and accepting the permission prompt
 
 **No camera found:**
+
 - Ensure your device has a camera
 - Check that no other application is using the camera
 
 **Black screen:**
+
 - Verify you're accessing via HTTPS or localhost
 - Check browser console for errors
 - Ensure WebGL is supported and enabled
@@ -180,13 +189,6 @@ this.effect.domElement.style.backgroundColor = 'black';
 ## License
 
 MIT License - see [LICENSE](LICENSE) file for details
-
-## Contributing
-
-Contributions are welcome! Feel free to:
-- Report bugs
-- Suggest features
-- Submit pull requests
 
 ## Acknowledgments
 

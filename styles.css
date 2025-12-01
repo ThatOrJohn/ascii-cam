@@ -31,6 +31,7 @@ header {
     padding: 15px 30px;
     border-radius: 8px;
     backdrop-filter: blur(10px);
+    transition: opacity 0.5s ease;
 }
 
 header h1 {
@@ -134,6 +135,28 @@ header h1 {
     cursor: pointer;
     width: 16px;
     height: 16px;
+}
+
+.control-group select {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    padding: 5px 10px;
+    background-color: #222;
+    color: #0f0;
+    border: 1px solid #0f0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.control-group select:hover {
+    background-color: #333;
+    border-color: #00ff00;
+}
+
+.control-group select:focus {
+    outline: none;
+    box-shadow: 0 0 5px #0f0;
 }
 
 #resolutionValue {

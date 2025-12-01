@@ -18,6 +18,17 @@ class AsciiCam {
 
         this.currentFacingMode = 'user'; // 'user' for front, 'environment' for back
         this.isRunning = false;
+        this.currentColorScheme = 'classic';
+
+        // Color schemes with retro console/arcade palettes
+        this.colorSchemes = {
+            classic: { fg: '#ffffff', bg: '#000000' },
+            gameboy: { fg: '#9bbc0f', bg: '#0f380f' },
+            amber: { fg: '#ffb000', bg: '#000000' },
+            green: { fg: '#33ff33', bg: '#001100' },
+            c64: { fg: '#7c70da', bg: '#3e31a2' },
+            arcade: { fg: '#00ffff', bg: '#000033' }
+        };
 
         this.initUI();
     }
@@ -28,8 +39,9 @@ class AsciiCam {
         const switchBtn = document.getElementById('switchBtn');
         const resolutionSlider = document.getElementById('resolution');
         const resolutionValue = document.getElementById('resolutionValue');
-        const colorToggle = document.getElementById('colorToggle');
-        const invertToggle = document.getElementById('invertToggle');
+        const colorSchemeSelect = document.getElementById('colorScheme');
+        const hideHeaderToggle = document.getElementById('hideHeader');
+        const header = document.querySelector('header');
 
         startBtn.addEventListener('click', () => this.start());
         stopBtn.addEventListener('click', () => this.stop());
@@ -43,24 +55,20 @@ class AsciiCam {
             }
         });
 
-        colorToggle.addEventListener('change', (e) => {
+        colorSchemeSelect.addEventListener('change', (e) => {
+            this.currentColorScheme = e.target.value;
             if (this.effect) {
-                this.effect.domElement.style.color = e.target.checked ? 'white' : 'white';
-                this.effect.domElement.style.backgroundColor = e.target.checked ? 'black' : 'black';
-                // Color mode would require a modified AsciiEffect
-                // For now, we keep it monochrome as that's the classic ASCII look
+                this.applyColorScheme();
             }
         });
 
-        invertToggle.addEventListener('change', (e) => {
-            if (this.effect) {
-                if (e.target.checked) {
-                    this.effect.domElement.style.color = 'black';
-                    this.effect.domElement.style.backgroundColor = 'white';
-                } else {
-                    this.effect.domElement.style.color = 'white';
-                    this.effect.domElement.style.backgroundColor = 'black';
-                }
+        hideHeaderToggle.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                header.style.opacity = '0';
+                header.style.pointerEvents = 'none';
+            } else {
+                header.style.opacity = '1';
+                header.style.pointerEvents = 'auto';
             }
         });
     }
@@ -162,8 +170,7 @@ class AsciiCam {
             resolution: 0.15
         });
         this.effect.setSize(width, height);
-        this.effect.domElement.style.color = 'white';
-        this.effect.domElement.style.backgroundColor = 'black';
+        this.applyColorScheme();
 
         // Add to container
         this.container.innerHTML = '';
@@ -215,15 +222,20 @@ class AsciiCam {
         const height = window.innerHeight;
 
         this.effect = new AsciiEffect(this.renderer, ' .:-+*=%@#', {
-            invert: document.getElementById('invertToggle').checked,
+            invert: false,
             resolution: value
         });
         this.effect.setSize(width, height);
-        this.effect.domElement.style.color = document.getElementById('invertToggle').checked ? 'black' : 'white';
-        this.effect.domElement.style.backgroundColor = document.getElementById('invertToggle').checked ? 'white' : 'black';
+        this.applyColorScheme();
 
         this.container.innerHTML = '';
         this.container.appendChild(this.effect.domElement);
+    }
+
+    applyColorScheme() {
+        const scheme = this.colorSchemes[this.currentColorScheme];
+        this.effect.domElement.style.color = scheme.fg;
+        this.effect.domElement.style.backgroundColor = scheme.bg;
     }
 
     async switchCamera() {
