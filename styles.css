@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #000;
+    color: #fff;
+    overflow: hidden;
+    line-height: 1.6;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px 30px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+}
+
+header h1 {
+    font-size: 2em;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-size: 0.9em;
+    color: #888;
+}
+
+#ascii-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#ascii-container pre {
+    margin: 0;
+    line-height: 1;
+    letter-spacing: 0;
+}
+
+.controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    max-width: 90%;
+}
+
+.btn {
+    padding: 12px 24px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #0f0;
+    color: #000;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #00cc00;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #333;
+    color: #fff;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background-color: #555;
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.control-group label {
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.control-group input[type="range"] {
+    width: 100px;
+}
+
+.control-group input[type="checkbox"] {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+#resolutionValue {
+    font-weight: bold;
+    color: #0f0;
+    min-width: 40px;
+}
+
+.error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 0, 0, 0.9);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    max-width: 80%;
+    text-align: center;
+    z-index: 200;
+}
+
+.error.hidden {
+    display: none;
+}
+
+footer {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer a {
+    color: #0f0;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    header {
+        top: 10px;
+        padding: 10px 20px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    .subtitle {
+        font-size: 0.8em;
+    }
+
+    .controls {
+        bottom: 10px;
+        padding: 15px;
+        gap: 8px;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+
+    .control-group {
+        padding: 5px 10px;
+    }
+
+    .control-group label {
+        font-size: 12px;
+    }
+
+    .control-group input[type="range"] {
+        width: 80px;
+    }
+
+    footer {
+        bottom: 80px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.2em;
+    }
+
+    .controls {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .control-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    footer {
+        display: none;
+    }
+}
+
+/* Loading animation */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.btn-primary:not(:disabled) {
+    animation: pulse 2s infinite;
+}
+
+.btn-primary:hover:not(:disabled) {
+    animation: none;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Real-time ASCII art webcam effect using Three.js">
+    <title>ASCII Cam - Live Webcam ASCII Art</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ASCII Cam</h1>
+            <p class="subtitle">Turn your camera into ASCII art</p>
+        </header>
+
+        <div id="ascii-container"></div>
+
+        <div class="controls">
+            <button id="startBtn" class="btn btn-primary">Start Camera</button>
+            <button id="stopBtn" class="btn btn-secondary" disabled>Stop Camera</button>
+            <button id="switchBtn" class="btn btn-secondary" disabled>Switch Camera</button>
+
+            <div class="control-group">
+                <label for="resolution">ASCII Resolution:</label>
+                <input type="range" id="resolution" min="0.05" max="0.3" step="0.01" value="0.15">
+                <span id="resolutionValue">0.15</span>
+            </div>
+
+            <div class="control-group">
+                <label>
+                    <input type="checkbox" id="colorToggle">
+                    Color Mode
+                </label>
+                <label>
+                    <input type="checkbox" id="invertToggle">
+                    Invert
+                </label>
+            </div>
+        </div>
+
+        <div id="error-message" class="error hidden"></div>
+
+        <footer>
+            <p>Built with <a href="https://threejs.org/" target="_blank">Three.js</a></p>
+            <p>Inspired by <a href="https://threejs.org/examples/?q=asci#webgl_effects_ascii" target="_blank">Three.js ASCII Example</a></p>
+        </footer>
+    </div>
+
+    <!-- Hidden video element for camera feed -->
+    <video id="video" autoplay playsinline style="display: none;"></video>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
