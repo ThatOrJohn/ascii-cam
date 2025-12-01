@@ -16,36 +16,57 @@
 
         <div id="ascii-container"></div>
 
-        <div class="controls">
-            <button id="startBtn" class="btn btn-primary">Start Camera</button>
-            <button id="stopBtn" class="btn btn-secondary" disabled>Stop Camera</button>
-            <button id="switchBtn" class="btn btn-secondary" disabled>Switch Camera</button>
+        <!-- Toggle button for controls -->
+        <button id="toggleControls" class="toggle-btn" aria-label="Toggle controls">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 1v6m0 6v6m8.66-14.66l-4.24 4.24m-4.24 4.24l-4.24 4.24m14.66-8.66l-4.24-4.24m-4.24-4.24l-4.24-4.24"></path>
+            </svg>
+        </button>
 
-            <div class="control-group">
-                <label for="resolution">ASCII Resolution:</label>
-                <input type="range" id="resolution" min="0.05" max="0.3" step="0.01" value="0.15">
-                <span id="resolutionValue">0.15</span>
+        <!-- Slideout controls panel -->
+        <div class="controls-panel active">
+            <div class="controls-header">
+                <h3>Controls</h3>
+                <button id="closeControls" class="close-btn" aria-label="Close controls">×</button>
             </div>
 
-            <div class="control-group">
-                <label for="colorScheme">Color Scheme:</label>
-                <select id="colorScheme">
-                    <option value="classic">Classic</option>
-                    <option value="gameboy">Game Boy</option>
-                    <option value="amber">Amber Terminal</option>
-                    <option value="green">Green CRT</option>
-                    <option value="c64">Commodore 64</option>
-                    <option value="arcade">Street Fighter</option>
-                </select>
-            </div>
+            <div class="controls-content">
+                <div class="button-group">
+                    <button id="startBtn" class="btn btn-primary">Start Camera</button>
+                    <button id="stopBtn" class="btn btn-secondary" disabled>Stop Camera</button>
+                    <button id="switchBtn" class="btn btn-secondary" disabled>Switch Camera</button>
+                </div>
 
-            <div class="control-group">
-                <label>
-                    <input type="checkbox" id="hideHeader">
-                    Hide Header
-                </label>
+                <div class="control-group">
+                    <label for="resolution">ASCII Resolution:</label>
+                    <input type="range" id="resolution" min="0.05" max="0.3" step="0.01" value="0.15">
+                    <span id="resolutionValue">0.15</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="colorScheme">Color Scheme:</label>
+                    <select id="colorScheme">
+                        <option value="classic">Classic</option>
+                        <option value="gameboy">Game Boy</option>
+                        <option value="amber">Amber Terminal</option>
+                        <option value="green">Green CRT</option>
+                        <option value="c64">Commodore 64</option>
+                        <option value="arcade">Street Fighter</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>
+                        <input type="checkbox" id="hideHeader">
+                        Hide Header
+                    </label>
+                </div>
             </div>
         </div>
+
+        <!-- Overlay for closing panel -->
+        <div class="controls-overlay active"></div>
 
         <div id="error-message" class="error hidden"></div>
 

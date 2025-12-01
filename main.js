@@ -42,6 +42,32 @@ class AsciiCam {
         const colorSchemeSelect = document.getElementById('colorScheme');
         const hideHeaderToggle = document.getElementById('hideHeader');
         const header = document.querySelector('header');
+        const toggleControlsBtn = document.getElementById('toggleControls');
+        const closeControlsBtn = document.getElementById('closeControls');
+        const controlsPanel = document.querySelector('.controls-panel');
+        const controlsOverlay = document.querySelector('.controls-overlay');
+
+        // Toggle controls panel
+        toggleControlsBtn.addEventListener('click', () => {
+            controlsPanel.classList.add('active');
+            controlsOverlay.classList.add('active');
+        });
+
+        // Close controls panel
+        const closeControls = () => {
+            controlsPanel.classList.remove('active');
+            controlsOverlay.classList.remove('active');
+        };
+
+        closeControlsBtn.addEventListener('click', closeControls);
+        controlsOverlay.addEventListener('click', closeControls);
+
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && controlsPanel.classList.contains('active')) {
+                closeControls();
+            }
+        });
 
         startBtn.addEventListener('click', () => this.start());
         stopBtn.addEventListener('click', () => this.stop());
