@@ -160,6 +160,23 @@ header h1 {
 
 .button-group .btn {
     width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.camera-indicator {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    background: rgba(0, 255, 0, 0.2);
+    border: 1px solid rgba(0, 255, 0, 0.4);
+    border-radius: 12px;
+    font-size: 0.85em;
+    color: #0f0;
+    font-weight: bold;
 }
 
 /* Overlay */

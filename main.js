@@ -106,6 +106,7 @@ class AsciiCam {
             this.initThree();
             this.animate();
             this.updateButtons(true);
+            this.updateCameraIndicator();
         } catch (error) {
             this.showError(error.message);
             console.error('Error starting camera:', error);
@@ -276,9 +277,22 @@ class AsciiCam {
         try {
             await this.initCamera();
             this.videoTexture.needsUpdate = true;
+            this.updateCameraIndicator();
         } catch (error) {
             this.showError('Failed to switch camera: ' + error.message);
             this.currentFacingMode = this.currentFacingMode === 'user' ? 'environment' : 'user';
+            this.updateCameraIndicator();
+        }
+    }
+
+    updateCameraIndicator() {
+        const indicator = document.querySelector('.camera-indicator');
+        if (indicator) {
+            if (this.currentFacingMode === 'user') {
+                indicator.textContent = '📱 Front';
+            } else {
+                indicator.textContent = '📷 Rear';
+            }
         }
     }
 
